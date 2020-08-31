@@ -11,7 +11,7 @@ class Match():
         self.overs = overs
         self.score = 0
         self.wicket_fallen = 0
-        self.current_balls = 0
+        self.current_balls = 1 
         
     def total_balls(self):
         return self.overs * 6
@@ -87,6 +87,12 @@ class Match():
                 "Awesome reflexes shown by keeper and he's out stumped!!!"]
         self.stump_outcome = np.random.choice(self.stump_possible_outcome, 1)
         return self.stump_outcome[0]
+    
+    def extra_wide(self):
+        return "Wide Ball"
+
+    def extra_no_ball(self):
+        return "No Ball"
 
     def outcome_fn(self):
         self.wicket_outcome=['Caught Out','Bowled','Run Out','LBW','Stumped Out']
@@ -110,8 +116,12 @@ class Match():
                 print("Out")
             self.wicket_fallen += 1
             self.current_balls += 1
-        elif self.result[0] == 'Wide' or  self.result[0] == 'No Ball':
+        elif self.result[0] == 'Wide':
             self.score +=1
+            print(self.extra_wide())
+        elif self.result[0] == 'No Ball':
+            self.score +=1
+            print(self.extra_no_ball())
         else:
             current_run_score =  int(''.join(self.result))
             if(current_run_score==1):
@@ -155,7 +165,7 @@ while(t2.current_balls <= t2.total_balls() and t2.wicket_fallen < players - 1):
     t2.print_score()
 t2_score = t2.outcome_fn()[0]
 
-if(t1_score < t2_score):
+if(t1_score > t2_score):
     print("Team 1 Wins")
 elif(t1_score < t2_score):
     print("Team 2 Wins")

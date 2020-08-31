@@ -150,7 +150,7 @@ class Match():
             
 
 players = 11
-total_overs=(int(input("Enter the numbers of overs in the match")))
+total_overs=(int(input("Enter the numbers of overs in the match: ")))
 t1= Match(total_overs)
 t2= Match(total_overs)
 

@@ -136,7 +136,7 @@ class Match():
 
     def print_score(self):
         print("After {}.{} overs, score is {}/{}\n".format((self.current_balls)//6, (self.current_balls) % 6, self.outcome_fn()[0],self.wicket_fallen))
-        time.sleep(2)
+        time.sleep(0.1)
             
 
 players = 11
@@ -144,7 +144,20 @@ total_overs=(int(input("Enter the numbers of overs in the match")))
 t1= Match(total_overs)
 t2= Match(total_overs)
 
-while(t1.current_balls < t1.total_balls() and t1.wicket_fallen < players-1):
+while(t1.current_balls <= t1.total_balls() and t1.wicket_fallen < players-1):
     t1.print_score()
 
+t1_score = t1.outcome_fn()[0]
 
+print("Second Innings Starts now\n")
+
+while(t2.current_balls <= t2.total_balls() and t2.wicket_fallen < players - 1):
+    t2.print_score()
+t2_score = t2.outcome_fn()[0]
+
+if(t1_score < t2_score):
+    print("Team 1 Wins")
+elif(t1_score < t2_score):
+    print("Team 2 Wins")
+else:
+    print("Its a Draw")

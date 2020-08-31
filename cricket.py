@@ -1,4 +1,5 @@
 import numpy as np
+import time
 
 class Team():
     def __init__(self,number_of_players):
@@ -135,6 +136,7 @@ class Match():
 
     def print_score(self):
         print("After {}.{} overs, score is {}/{}\n".format((self.current_balls)//6, (self.current_balls) % 6, self.outcome_fn()[0],self.wicket_fallen))
+        time.sleep(2)
             
 
 players = 11
